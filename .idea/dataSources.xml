@@ -7,5 +7,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/hroublesTest</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="hroubles@localhost" uuid="0bbceb1a-5a67-47fa-986f-496e4e79d5e5">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/hroubles</jdbc-url>
+    </data-source>
   </component>
 </project>

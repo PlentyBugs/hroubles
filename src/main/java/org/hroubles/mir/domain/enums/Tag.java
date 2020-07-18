@@ -20,9 +20,10 @@ public enum Tag {
     LUGGAGE,
     MOVIE,
     TV,
-    PET_SUPPLIE,
+    PET_SUPPLIES,
     SOFTWARE,
     SPORT,
     TOOL,
-    TOY
+    TOY,
+    CLOTHES
 }
