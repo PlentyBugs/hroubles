@@ -1,5 +1,6 @@
 package org.hroubles.mir.domain;
 
+import org.hroubles.mir.domain.enums.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

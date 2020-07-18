@@ -1,7 +1,7 @@
 package org.hroubles.mir.service;
 
 import org.hamcrest.CoreMatchers;
-import org.hroubles.mir.domain.Role;
+import org.hroubles.mir.domain.enums.Role;
 import org.hroubles.mir.domain.User;
 import org.hroubles.mir.repository.UserRepository;
 import org.junit.Test;
@@ -32,7 +32,7 @@ public class UserServiceTest {
 
     @MockBean
     private PasswordEncoder passwordEncoder;
-    
+
     @MockBean
     private MailService mailService;
 

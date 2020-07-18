@@ -1,4 +1,4 @@
-package org.hroubles.mir.domain;
+package org.hroubles.mir.domain.enums;
 
 import org.springframework.security.core.GrantedAuthority;
 

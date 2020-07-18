@@ -1,6 +1,6 @@
 package org.hroubles.mir.service;
 
-import org.hroubles.mir.domain.Role;
+import org.hroubles.mir.domain.enums.Role;
 import org.hroubles.mir.domain.User;
 import org.hroubles.mir.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

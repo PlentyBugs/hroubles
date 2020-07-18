@@ -1,0 +1,26 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="parts/layout"><div layout:fragment="content">
+
+    <h3>Products</h3>
+    <div layout:replace="parts/pager :: pager (url = ${url}, page = ${page})">
+        <div layout:fragment="pagerContent">
+            <div class="card-columns" id="product-list">
+                <th:block th:if="${not #lists.isEmpty(page.content)}">
+                    <th:block th:each="product: ${page}" >
+                        <div class="card my-3" style="width: 18rem;" th:data-id="${product.id}">
+                            <img th:src="@{/img/} + ${product.filename}" class="card-img-top" onerror="this.style.display='none'" />
+                            <div class="card-body">
+                                <div class="m-2"></div>
+                                <div th:text="${product.text}" class="card-text">Text</div>
+                                #<i th:text="${product.tag}">Tag</i>
+                            </div>
+                        </div>
+                    </th:block>
+                </th:block>
+                <th:block th:unless="${not #lists.isEmpty(page.content)}">
+                    <h3>There're no products on the site yet</h3>
+                </th:block>
+            </div>
+        </div>
+    </div>
+
+</div></html>
