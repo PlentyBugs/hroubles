@@ -10,8 +10,10 @@
                             <img th:src="@{/img/} + ${product.filename}" class="card-img-top" onerror="this.style.display='none'" />
                             <div class="card-body">
                                 <div class="m-2"></div>
-                                <div th:text="${product.text}" class="card-text">Text</div>
-                                #<i th:text="${product.tag}">Tag</i>
+                                <div th:text="${product.name}" class="card-text">Name</div>
+                                <th:block th:each="tag : ${product.tags}">
+                                    #<i th:text="${#strings.capitalize(#strings.toLowerCase(tag))}">Tag</i>
+                                </th:block>
                             </div>
                         </div>
                     </th:block>
