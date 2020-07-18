@@ -3,8 +3,7 @@
         <div th:if="${param.logout}">
             You have been logged out.
         </div>
-        <h3 th:if="${type == 'registration'}">Регистрация</h3>
-        <h3 th:unless="${type == 'registration'}">Вход</h3>
+        <h3 th:text="${#strings.capitalize(type)}"></h3>
         <div class="alert alert-success" role="alert" th:if="${message != null}" th:text="${message}"></div>
         <form action="#" th:action="@{/} + ${type}" method="post" th:object="${user}">
             <div class="form-group row" th:if="${type == 'registration'}">
