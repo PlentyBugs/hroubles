@@ -5,3 +5,5 @@ insert into product (id, name, description, count, price, user_id, filename) val
     (4, 'Meaning of life', 'We dont have it' , 0, 99, 2, '4.png');
 
 insert into product_tag (product_id, tags) values (1, 'TOY'), (2, 'GAME'), (3, 'CAR'), (3, 'CLOTHES'), (4, 'SCIENTIFIC');
+
+alter sequence hibernate_sequence restart with 5;

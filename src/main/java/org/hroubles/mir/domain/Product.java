@@ -28,7 +28,6 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Set<Tag> tags = new HashSet<>();
 
-    @NotBlank(message = "Product price can't be empty")
     @Min(value = 0)
     private Long price;
 
