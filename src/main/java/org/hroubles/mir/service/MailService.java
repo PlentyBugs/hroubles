@@ -1,4 +1,4 @@
-package org.rus.mir.service;
+package org.hroubles.mir.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

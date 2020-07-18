@@ -1,6 +1,6 @@
-package org.rus.mir.config;
+package org.hroubles.mir.config;
 
-import org.rus.mir.util.RedirectInterceptor;
+import org.hroubles.mir.util.RedirectInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

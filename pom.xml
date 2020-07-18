@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>org.rus</groupId>
+    <groupId>org.hroubles</groupId>
     <artifactId>mir</artifactId>
     <version>1.0-SNAPSHOT</version>
 

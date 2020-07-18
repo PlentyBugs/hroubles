@@ -1,8 +1,8 @@
-package org.rus.mir.controller;
+package org.hroubles.mir.controller;
 
-import org.rus.mir.controller.util.ControllerUtils;
-import org.rus.mir.domain.User;
-import org.rus.mir.service.UserService;
+import org.hroubles.mir.controller.util.ControllerUtils;
+import org.hroubles.mir.domain.User;
+import org.hroubles.mir.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

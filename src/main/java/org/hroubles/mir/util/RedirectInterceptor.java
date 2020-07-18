@@ -1,4 +1,4 @@
-package org.rus.mir.util;
+package org.hroubles.mir.util;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

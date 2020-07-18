@@ -1,4 +1,4 @@
-package org.rus.mir.controller.util;
+package org.hroubles.mir.controller.util;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;

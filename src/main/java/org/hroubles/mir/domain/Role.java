@@ -1,4 +1,4 @@
-package org.rus.mir.domain;
+package org.hroubles.mir.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 

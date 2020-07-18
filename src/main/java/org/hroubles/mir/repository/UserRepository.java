@@ -1,6 +1,6 @@
-package org.rus.mir.repository;
+package org.hroubles.mir.repository;
 
-import org.rus.mir.domain.User;
+import org.hroubles.mir.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

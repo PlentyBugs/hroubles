@@ -1,4 +1,4 @@
-package org.rus.mir;
+package org.hroubles.mir;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

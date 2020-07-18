@@ -1,6 +1,6 @@
-package org.rus.mir.config;
+package org.hroubles.mir.config;
 
-import org.rus.mir.service.UserService;
+import org.hroubles.mir.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,8 +1,8 @@
-package org.rus.mir.service;
+package org.hroubles.mir.service;
 
-import org.rus.mir.domain.Role;
-import org.rus.mir.domain.User;
-import org.rus.mir.repository.UserRepository;
+import org.hroubles.mir.domain.Role;
+import org.hroubles.mir.domain.User;
+import org.hroubles.mir.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;

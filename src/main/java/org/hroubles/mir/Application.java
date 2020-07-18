@@ -1,4 +1,4 @@
-package org.rus.mir;
+package org.hroubles.mir;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

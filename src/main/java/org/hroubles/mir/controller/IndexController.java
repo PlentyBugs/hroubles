@@ -1,4 +1,4 @@
-package org.rus.mir.controller;
+package org.hroubles.mir.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
