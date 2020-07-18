@@ -1,0 +1,63 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="parts/layout"><div layout:fragment="content">
+
+    <h3>Add product</h3>
+
+    <form method="post" enctype="multipart/form-data" th:object="${product}" action="#" th:action="@{/product}">
+        <div class="form-group col-md-10">
+            <label for="productName">Product name</label>
+            <input id="productName" type="text" name="name" th:value="${product != null} ? *{name}: ''" placeholder="Name" class="form-control" th:classappend="${product != null and #fields.hasErrors('name')} ? 'is-invalid': ''"/>
+            <span class="invalid-feedback" th:if="${product != null and #fields.hasErrors('name')}" th:errors="*{name}">
+                Invalid product
+            </span>
+        </div>
+        <div class="form-group col-md-10">
+            <label for="productTag">Product tags</label>
+
+            <select name="tag" multiple class="form-control" id="productTag" th:classappend="${product != null and #fields.hasErrors('tag')} ? 'is-invalid': ''">
+                <th:block th:each="tag : ${tags}">
+                    <option th:text="${#strings.capitalize(#strings.toLowerCase(tag))}"></option>
+                </th:block>
+            </select>
+
+            <span class="invalid-feedback" th:if="${product != null and #fields.hasErrors('tag')}" th:errors="*{tag}">
+                Invalid product
+            </span>
+        </div>
+        <div class="form-group col-md-10">
+            <label for="productPrice">Price</label>
+            <div class="input-group mr-sm-2">
+                <input id="productPrice" min="0" type="number" name="price" th:value="${product != null} ? *{price}: ''" placeholder="Price" class="form-control" th:classappend="${product != null and #fields.hasErrors('price')} ? 'is-invalid': ''" />
+                <div class="input-group-append">
+                    <i class="fa fa-usd input-group-text" aria-hidden="true"></i>
+                </div>
+            </div>
+            <span class="invalid-feedback" th:if="${product != null and #fields.hasErrors('price')}" th:errors="*{price}'">
+                Invalid product
+            </span>
+        </div>
+        <div class="form-group col-md-10">
+            <label for="productCount">Count</label>
+            <input id="productCount" min="0" type="number" name="count" th:value="${product != null} ? *{count}: ''" placeholder="Count" class="form-control" th:classappend="${product != null and #fields.hasErrors('count')} ? 'is-invalid': ''" />
+            <span class="invalid-feedback" th:if="${product != null and #fields.hasErrors('count')}" th:errors="*{count}'">
+                Invalid product
+            </span>
+        </div>
+        <div class="form-group col-md-10">
+            <div class="custom-file">
+                <input type="file" accept="image/*" name="file" id="customFile" />
+                <label for="customFile" class="custom-file-label">Choose Image</label>
+            </div>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <input type="hidden" th:name="id" th:value="${product != null} ? ${product.id}: ''" />
+        </div>
+        <div class="form-group col-md-10">
+            <label for="productDescription">Product description</label>
+            <textarea rows="4" id="productDescription" name="description" th:value="${product != null} ? *{description}: ''" placeholder="Description" class="form-control" th:classappend="${product != null and #fields.hasErrors('description')} ? 'is-invalid': ''"></textarea>
+            <span class="invalid-feedback" th:if="${product != null and #fields.hasErrors('description')}" th:errors="*{description}'">
+                Invalid product
+            </span>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Add product</button>
+    </form>
+
+</div></html>

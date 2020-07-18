@@ -27,10 +27,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item" sec:authorize="hasAuthority('SELLER')">
+                            <a class="nav-link" th:href="@{/product/add-product-page}">Add product</a>
+                        </li>
                         <li class="nav-item">
                             <form class="form-inline mb-0">
                                 <div class="input-group mr-sm-2">
-                                    <input class="form-control" type="search" placeholder="Search">
+                                    <input class="form-control" type="search" placeholder="Search"/>
                                     <div class="input-group-append">
                                         <i class="fa fa-search input-group-text" aria-hidden="true"></i>
                                     </div>
@@ -61,7 +64,7 @@
     <th:block th:fragment="scripts">
         <script th:src="@{/js/script.js}"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     </th:block>
 </html>

@@ -1,5 +1,6 @@
 package org.hroubles.mir.controller;
 
+import org.hroubles.mir.domain.enums.Tag;
 import org.hroubles.mir.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -24,5 +25,11 @@ public class ProductController {
     ) {
         model.addAttribute("page", productRepository.findAll(pageable));
         return "productList";
+    }
+
+    @GetMapping("/add-product-page")
+    public String addPage(Model model) {
+        model.addAttribute("tags", Tag.values());
+        return "add-product-page";
     }
 }
