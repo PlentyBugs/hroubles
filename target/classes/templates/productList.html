@@ -7,17 +7,19 @@
             <div class="card-columns" id="product-list">
                 <th:block th:if="${not #lists.isEmpty(page.content)}">
                     <th:block th:each="product: ${page}" >
-                        <div class="card my-3" style="width: 18rem;" th:data-id="${product.id}">
-                            <img th:src="@{/img/} + ${product.filename}" class="card-img-top" onerror="this.style.display='none'" />
-                            <div class="card-body">
-                                <div class="m-2"></div>
-                                <div th:text="${product.name}" class="card-text">Name</div>
-                                <th:block th:each="tag : ${product.tags}">
-                                    #<i th:text="${#strings.capitalize(#strings.toLowerCase(tag))}">Tag</i>
-                                </th:block>
+                        <a th:href="@{/product/} + ${product.id}" class="card-link">
+                            <div class="card my-3" style="width: 18rem;" th:data-id="${product.id}">
+                                <img th:src="@{/img/} + ${product.filename}" class="card-img-top" onerror="this.style.display='none'" />
+                                <div class="card-body">
+                                    <div class="m-2"></div>
+                                    <div th:text="${product.name}" class="card-text">Name</div>
+                                    <th:block th:each="tag : ${product.tags}">
+                                        #<i th:text="${#strings.capitalize(#strings.toLowerCase(tag))}">Tag</i>
+                                    </th:block>
+                                </div>
+                                <a style="width: 100%;" href="#" th:data-name="${product.name.replaceAll('\s+', '_')}" th:data-price="${product.price}" class="add-to-cart btn btn-primary">Add to cart</a>
                             </div>
-                            <a style="width: 100%;" href="#" th:data-name="${product.name.replaceAll('\s+', '_')}" th:data-price="${product.price}" class="add-to-cart btn btn-primary">Add to cart</a>
-                        </div>
+                        </a>
                     </th:block>
                 </th:block>
                 <th:block th:unless="${not #lists.isEmpty(page.content)}">

@@ -1,0 +1,23 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="parts/layout"><span layout:fragment="content">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 float-left">
+                <img th:src="@{/img/} + ${product.filename}" class="rounded max-image" onerror="this.style.display='none'"/>
+            </div>
+            <div class="col-md-3">
+                <h3 th:text="${product.name}"></h3>
+                <div>by <a th:href="@{/user/} + ${product.seller.id}" th:text="${product.seller.username}"></a></div>
+                Description: <span th:text="${product.description}"></span><br>
+                <th:block th:each="tag : ${product.tags}">
+                    #<i th:text="${#strings.capitalize(#strings.toLowerCase(tag))}">Tag</i>
+                </th:block>
+            </div>
+            <div class="col-md-3 float-right">
+                <div>Price: <span th:text="${product.price}"></span>$</div>
+                <a href="#" th:data-name="${product.name.replaceAll('\s+', '_')}" th:data-price="${product.price}" class="add-to-cart btn btn-primary">Add to cart</a>
+            </div>
+        </div>
+    </div>
+
+</span></html>

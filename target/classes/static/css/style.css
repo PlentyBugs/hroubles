@@ -30,3 +30,13 @@ body {
     text-decoration: none;
     color: black;
 }
+
+.card-link,.card-link:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.max-image {
+    max-width: 500px;
+    width:100%;
+}
