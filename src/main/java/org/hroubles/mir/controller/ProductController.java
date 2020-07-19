@@ -39,10 +39,13 @@ public class ProductController {
 
     @GetMapping
     public String productList(
+            @RequestParam(required = false, defaultValue = "") String filter,
             Model model,
             @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
     ) {
         model.addAttribute("page", productRepository.findAll(pageable));
+        model.addAttribute("url", "/product");
+        model.addAttribute("filter", filter);
         return "productList";
     }
 

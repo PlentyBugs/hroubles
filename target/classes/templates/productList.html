@@ -2,30 +2,6 @@
 
     <h3>Products</h3>
 
-    <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <table class="show-cart table">
-
-                    </table>
-                    <div>Total price: $<span class="total-cart"></span></div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Order now</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <div layout:replace="parts/pager :: pager (url = ${url}, page = ${page})">
         <div layout:fragment="pagerContent">
             <div class="card-columns" id="product-list">
@@ -40,7 +16,7 @@
                                     #<i th:text="${#strings.capitalize(#strings.toLowerCase(tag))}">Tag</i>
                                 </th:block>
                             </div>
-                            <a style="width: 100%;" href="#" th:data-name="${product.name}" th:data-price="${product.price}" class="add-to-cart btn btn-primary">Add to cart</a>
+                            <a style="width: 100%;" href="#" th:data-name="${product.name.replaceAll('\s+', '_')}" th:data-price="${product.price}" class="add-to-cart btn btn-primary">Add to cart</a>
                         </div>
                     </th:block>
                 </th:block>
