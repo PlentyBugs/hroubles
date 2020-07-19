@@ -15,7 +15,7 @@
 
             <select name="tag" multiple class="form-control" id="productTag" th:classappend="${product != null and #fields.hasErrors('tag')} ? 'is-invalid': ''">
                 <th:block th:each="tag : ${tags}">
-                    <option th:text="${#strings.capitalize(#strings.toLowerCase(tag))}"></option>
+                    <option th:value="${tag}" th:text="${#strings.capitalize(#strings.toLowerCase(tag))}"></option>
                 </th:block>
             </select>
 

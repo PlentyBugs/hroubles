@@ -25,3 +25,8 @@ body {
     flex-direction: row;
     align-items: center;
 }
+
+#cart_2 {
+    text-decoration: none;
+    color: black;
+}
