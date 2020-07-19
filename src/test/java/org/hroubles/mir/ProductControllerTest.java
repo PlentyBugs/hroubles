@@ -12,6 +12,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -37,6 +38,18 @@ public class ProductControllerTest {
         mockMvc.perform(get("/product"))
                 .andDo(print())
                 .andExpect(authenticated())
-                .andExpect(xpath("//div[@id='product-list']/div").nodeCount(4));
+                .andExpect(xpath("//div[@id='product-list']/a/div").nodeCount(4));
+    }
+
+    @Test
+    public void specificProductTest() throws Exception {
+        mockMvc.perform(get("/product/1"))
+                .andDo(print())
+                .andExpect(authenticated())
+                .andExpect(xpath("//div[@id='main']/span/div/div/div[2]/h3").string(containsString("My opinion")))
+                .andExpect(xpath("//div[@id='main']/span/div/div/div[2]/div/a").string(containsString("admin")))
+                .andExpect(xpath("//div[@id='main']/span/div/div/div[3]/div/span").string(containsString("100")))
+                .andExpect(xpath("//div[@id='main']/span/div/div/div[2]/div[2]").string(containsString("Useless")))
+                .andExpect(xpath("//div[@id='main']/span/div/div/div[1]/img").exists());
     }
 }

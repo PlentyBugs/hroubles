@@ -8,7 +8,7 @@
             <div class="col-md-3">
                 <h3 th:text="${product.name}"></h3>
                 <div>by <a th:href="@{/user/} + ${product.seller.id}" th:text="${product.seller.username}"></a></div>
-                Description: <span th:text="${product.description}"></span><br>
+                Description: <div th:text="${product.description}"></div>
                 <th:block th:each="tag : ${product.tags}">
                     #<i th:text="${#strings.capitalize(#strings.toLowerCase(tag))}">Tag</i>
                 </th:block>
