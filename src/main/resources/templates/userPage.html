@@ -1,0 +1,22 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="parts/layout"><span layout:fragment="content">
+
+    <div th:if="${user == null}">User not found</div>
+    <div th:unless="${user == null}">
+        <form method="post">
+            <div class="form-group row">
+                <label for="userEmail" class="col-sm-2 col-form-label">Email</label>
+                <input type="email" th:value="${user.email}" id="userEmail" class="col-sm-6" th:readonly="${!isCurrentUser}" placeholder="example@example.ex"/>
+            </div>
+            <div class="form-group row">
+                <label for="userName" class="col-sm-2 col-form-label">Username</label>
+                <input type="text" th:value="${user.username}" id="userName" class="col-sm-6" th:readonly="${!isCurrentUser}" placeholder="Username"/>
+            </div>
+             <div class="form-group row" th:if="${isCurrentUser}">
+                <label for="userPassword" class="col-sm-2 col-form-label">Password</label>
+                <input type="password" id="userPassword" class="col-sm-6" placeholder="Password"/>
+             </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+
+</span></html>
