@@ -3,7 +3,6 @@ package org.hroubles.mir.controller;
 import org.hroubles.mir.controller.util.ControllerUtils;
 import org.hroubles.mir.domain.User;
 import org.hroubles.mir.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,14 +21,17 @@ import java.util.Objects;
 public class RegistrationController {
     private final static String CAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final RestTemplate restTemplate;
 
     @Value("${recaptcha.secret}")
     private String secret;
 
-    @Autowired
-    private RestTemplate restTemplate;
+
+    public RegistrationController(UserService userService, RestTemplate restTemplate) {
+        this.userService = userService;
+        this.restTemplate = restTemplate;
+    }
 
     @GetMapping("/registration")
     public String registration() {

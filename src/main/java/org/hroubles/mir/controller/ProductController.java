@@ -5,7 +5,6 @@ import org.hroubles.mir.domain.Product;
 import org.hroubles.mir.domain.User;
 import org.hroubles.mir.domain.enums.Tag;
 import org.hroubles.mir.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -28,11 +27,14 @@ import java.util.UUID;
 @RequestMapping("/product")
 public class ProductController {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     @Value("${upload.path}")
     private String uploadPath;
+
+    public ProductController(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @GetMapping
     public String productList(

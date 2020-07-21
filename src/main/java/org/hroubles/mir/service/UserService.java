@@ -1,9 +1,8 @@
 package org.hroubles.mir.service;
 
-import org.hroubles.mir.domain.enums.Role;
 import org.hroubles.mir.domain.User;
+import org.hroubles.mir.domain.enums.Role;
 import org.hroubles.mir.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,17 +17,20 @@ import java.util.stream.Collectors;
 @Service
 public class UserService implements UserDetailsService {
 
-    @Autowired
-    private MailService mailService;
+    private final MailService mailService;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Value("${hostname}")
     private String hostname;
+
+    public UserService(MailService mailService, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.mailService = mailService;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
