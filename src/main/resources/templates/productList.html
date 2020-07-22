@@ -2,7 +2,7 @@
 
     <h3>Products</h3>
 
-    <div layout:replace="parts/pager :: pager (url = ${url}, page = ${page})">
+    <div layout:replace="parts/pager :: pager (url = ${url}, page = ${page}, filter = ${filter})">
         <div layout:fragment="pagerContent">
             <div class="card-columns" id="product-list">
                 <th:block th:if="${not #lists.isEmpty(page.content)}">

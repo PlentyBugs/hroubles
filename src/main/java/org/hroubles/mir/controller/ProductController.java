@@ -16,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriUtils;
+import org.yaml.snakeyaml.util.UriEncoder;
 
 import javax.validation.Valid;
 import java.io.File;
@@ -43,12 +45,11 @@ public class ProductController {
             Model model,
             @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
     ) {
-
-        Page<Product> page = filter == null ? productService.findAll(pageable): productService.search(filter, pageable);
+        Page<Product> page = "".equals(filter) ? productService.findAll(pageable): productService.search(filter, pageable);
 
         model.addAttribute("page", page);
         model.addAttribute("url", "/product");
-        model.addAttribute("filter", filter);
+        model.addAttribute("filter", UriUtils.encodePath(filter, "UTF-8"));
         return "productList";
     }
 
