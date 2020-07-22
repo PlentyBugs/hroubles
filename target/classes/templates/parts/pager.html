@@ -1,5 +1,5 @@
 <div xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <div class="container mt-3" layout:fragment="pager (url, page)" th:with="totalPages = ${page.totalPages}, pageNumber = ${page.number}">
+    <div class="container mt-3" layout:fragment="pager (url, page, filter)" th:with="totalPages = ${page.totalPages}, pageNumber = ${page.number}">
         <th:block layout:fragment="pagerContent">
 
         </th:block>
@@ -15,21 +15,21 @@
                 </li>
                 <th:block th:unless="${totalPages > 7}" th:each="p : ${#numbers.sequence(0, page.totalPages - 1)}">
                     <li class="page-item" th:classappend="${p == page.number} ? 'disabled': 'active'">
-                        <a class="page-link" th:href="${url} + '?page=' + ${p}" th:text="${p + 1}"><span class="sr-only"></span></a>
+                        <a class="page-link" th:href="${url} + '?page=' + ${p} + '&filter=' + ${filter}" th:text="${p + 1}"><span class="sr-only"></span></a>
                     </li>
                 </th:block>
                 <th:block th:if="${totalPages > 7}">
                     <th:block th:each="p : ${head}">
                         <li th:if="${p == -1}" class="page-item disabled">
-                            <a class="page-link" th:href="${url} + '?page=' + ${p}" th:text="..."><span class="sr-only"></span></a>
+                            <a class="page-link" th:href="${url} + '?page=' + ${p} + '&filter=' + ${filter}" th:text="..."><span class="sr-only"></span></a>
                         </li>
                         <li th:unless="${p == -1}" class="page-item" th:classappend="${p == pageNumber} ? 'disabled': 'active'">
-                            <a class="page-link" th:href="${url} + '?page=' + ${p}" th:text="${p + 1}"><span class="sr-only"></span></a>
+                            <a class="page-link" th:href="${url} + '?page=' + ${p} + '&filter=' + ${filter}" th:text="${p + 1}"><span class="sr-only"></span></a>
                         </li>
                     </th:block>
                     <th:block th:each="p : ${bodyBefore}">
                         <li class="page-item" th:classappend="${p == pageNumber} ? 'disabled': 'active'">
-                            <a class="page-link" th:href="${url} + '?page=' + ${p}" th:text="${p + 1}"><span class="sr-only"></span></a>
+                            <a class="page-link" th:href="${url} + '?page=' + ${p} + '&filter=' + ${filter}" th:text="${p + 1}"><span class="sr-only"></span></a>
                         </li>
                     </th:block>
                     <th:block th:if="${pageNumber > 3 and pageNumber < totalPages - 2}">
@@ -39,15 +39,15 @@
                     </th:block>
                     <th:block th:each="p : ${bodyAfter}">
                         <li class="page-item" th:classappend="${p == pageNumber} ? 'disabled': 'active'">
-                            <a class="page-link" th:href="${url} + '?page=' + ${p}" th:text="${p + 1}"><span class="sr-only"></span></a>
+                            <a class="page-link" th:href="${url} + '?page=' + ${p} + '&filter=' + ${filter}" th:text="${p + 1}"><span class="sr-only"></span></a>
                         </li>
                     </th:block>
                     <th:block th:each="p : ${tail}">
                         <li th:if="${p == -1}" class="page-item disabled">
-                            <a class="page-link" th:href="${url} + '?page=' + ${p}" th:text="..."><span class="sr-only"></span></a>
+                            <a class="page-link" th:href="${url} + '?page=' + ${p} + '&filter=' + ${filter}" th:text="..."><span class="sr-only"></span></a>
                         </li>
                         <li th:unless="${p == -1}" class="page-item" th:classappend="${p == pageNumber} ? 'disabled': 'active'">
-                            <a class="page-link" th:href="${url} + '?page=' + ${p}" th:text="${p + 1}"><span class="sr-only"></span></a>
+                                <a class="page-link" th:href="${url} + '?page=' + ${p} + '&filter=' + ${filter}" th:text="${p + 1}"><span class="sr-only"></span></a>
                         </li>
                     </th:block>
                 </th:block>
