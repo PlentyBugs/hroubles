@@ -4,8 +4,9 @@ import org.hroubles.mir.controller.util.ControllerUtils;
 import org.hroubles.mir.domain.Product;
 import org.hroubles.mir.domain.User;
 import org.hroubles.mir.domain.enums.Tag;
-import org.hroubles.mir.repository.ProductRepository;
+import org.hroubles.mir.service.ProductService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -27,13 +28,13 @@ import java.util.UUID;
 @RequestMapping("/product")
 public class ProductController {
 
-    private final ProductRepository productRepository;
+    private final ProductService productService;
 
     @Value("${upload.path}")
     private String uploadPath;
 
-    public ProductController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @GetMapping
@@ -42,7 +43,10 @@ public class ProductController {
             Model model,
             @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
     ) {
-        model.addAttribute("page", productRepository.findAll(pageable));
+
+        Page<Product> page = filter == null ? productService.findAll(pageable): productService.search(filter, pageable);
+
+        model.addAttribute("page", page);
         model.addAttribute("url", "/product");
         model.addAttribute("filter", filter);
         return "productList";
@@ -65,7 +69,7 @@ public class ProductController {
             model.mergeAttributes(errorsMap);
         } else {
             saveFile(product, file);
-            productRepository.save(product);
+            productService.save(product);
         }
 
         return "redirect:/product";
@@ -76,7 +80,7 @@ public class ProductController {
             @PathVariable Long id,
             Model model
     ) {
-        model.addAttribute("product", productRepository.findById(id).get());
+        model.addAttribute("product", productService.findById(id).get());
         return "productPage";
     }
 
