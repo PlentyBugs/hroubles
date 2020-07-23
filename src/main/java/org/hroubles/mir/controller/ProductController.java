@@ -5,7 +5,6 @@ import org.hroubles.mir.domain.Product;
 import org.hroubles.mir.domain.User;
 import org.hroubles.mir.domain.enums.Tag;
 import org.hroubles.mir.service.ProductService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -17,23 +16,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriUtils;
-import org.yaml.snakeyaml.util.UriEncoder;
 
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/product")
 public class ProductController {
 
     private final ProductService productService;
-
-    @Value("${upload.path}")
-    private String uploadPath;
 
     public ProductController(ProductService productService) {
         this.productService = productService;
@@ -45,7 +38,7 @@ public class ProductController {
             Model model,
             @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
     ) {
-        Page<Product> page = "".equals(filter) ? productService.findAll(pageable): productService.search(filter, pageable);
+        Page<Product> page = productService.getPage(filter, pageable);
 
         model.addAttribute("page", page);
         model.addAttribute("url", "/product");
@@ -62,15 +55,12 @@ public class ProductController {
             @RequestParam("file") MultipartFile file,
             @RequestParam("tag")Set<Tag> tags
     ) throws IOException {
-        product.setSeller(user);
-        product.setTags(tags);
 
         if (bindingResult.hasErrors()) {
             Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
             model.mergeAttributes(errorsMap);
         } else {
-            saveFile(product, file);
-            productService.save(product);
+            productService.addProduct(product, user, tags, file);
         }
 
         return "redirect:/product";
@@ -85,23 +75,8 @@ public class ProductController {
         return "productPage";
     }
 
-    private void saveFile(@Valid Product product, @RequestParam("file") MultipartFile file) throws IOException {
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
-
-            if (uploadDir.exists()) uploadDir.mkdir();
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFilename = uuidFile + "." + file.getOriginalFilename();
-
-            file.transferTo(new File(uploadPath + "/" + resultFilename));
-
-            product.setFilename(resultFilename);
-        }
-    }
-
     @GetMapping("/add-product-page")
-    public String addPage(Model model) {
+    public String addProductPage(Model model) {
         model.addAttribute("tags", Tag.values());
         return "add-product-page";
     }
