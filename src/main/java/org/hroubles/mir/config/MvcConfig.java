@@ -34,7 +34,8 @@ public class MvcConfig implements WebMvcConfigurer {
                 "file:///" + uploadPath + "/",
                 "classpath:/static/css/",
                 "classpath:/static/js/",
-                "classpath:/static/img/"
+                "classpath:/static/img/",
+                "/webjars/"
         );
     }
 
