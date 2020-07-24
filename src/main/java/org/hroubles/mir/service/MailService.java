@@ -3,6 +3,7 @@ package org.hroubles.mir.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,6 +18,7 @@ public class MailService {
         this.mailSender = mailSender;
     }
 
+    @Async
     public void send(String emailTo, String subject, String message) {
         SimpleMailMessage smm = new SimpleMailMessage();
 
