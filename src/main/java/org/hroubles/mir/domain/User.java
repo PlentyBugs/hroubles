@@ -1,5 +1,7 @@
 package org.hroubles.mir.domain;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hroubles.mir.domain.enums.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +13,8 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "usr")
 public class User implements UserDetails {
@@ -32,8 +36,6 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
-
-    public User() {}
 
     @Override
     public boolean isAccountNonExpired() {
@@ -60,64 +62,6 @@ public class User implements UserDetails {
         return getRoles();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getActivationCode() {
-        return activationCode;
-    }
-
-    public void setActivationCode(String activationCode) {
-        this.activationCode = activationCode;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -129,18 +73,5 @@ public class User implements UserDetails {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", active=" + active +
-                ", email='" + email + '\'' +
-                ", activationCode='" + activationCode + '\'' +
-                ", roles=" + roles +
-                '}';
     }
 }

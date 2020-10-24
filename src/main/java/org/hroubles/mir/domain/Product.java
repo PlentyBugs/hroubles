@@ -1,5 +1,7 @@
 package org.hroubles.mir.domain;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.hroubles.mir.domain.enums.Tag;
 
@@ -11,6 +13,8 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,70 +43,6 @@ public class Product {
     private Long count;
 
     private String filename;
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Tag> getTags() {
-        return tags;
-    }
-
-    public void setTags(Set<Tag> tags) {
-        this.tags = tags;
-    }
-
-    public Long getPrice() {
-        return price;
-    }
-
-    public void setPrice(Long price) {
-        this.price = price;
-    }
-
-    public User getSeller() {
-        return seller;
-    }
-
-    public void setSeller(User seller) {
-        this.seller = seller;
-    }
-
-    public Long getCount() {
-        return count;
-    }
-
-    public void setCount(Long count) {
-        this.count = count;
-    }
 
     @Override
     public boolean equals(Object o) {
